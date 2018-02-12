@@ -1,20 +1,123 @@
+
+#
+#  Be sure to run `pod spec lint ImagePicker.podspec' to ensure this is a
+#  valid spec and to remove all comments including this before submitting the spec.
+#
+#  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
+#  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
+#
+
 Pod::Spec.new do |s|
-  s.name         = "TYPopBaseView" # 项目名称
-  s.version      = "4.0.3"        # 版本号 与 你仓库的 标签号 对应
-  s.license      = "MIT"          # 开源证书
-  s.summary      = "对弹窗类视图的统一处理" # 项目简介
 
-  s.homepage     = "https://github.com/1070824493" # 仓库的主页
-  s.source       = { :git => "https://github.com/1070824493/TYPopBaseView.git", :tag => "#{s.version}" }#你的仓库地址，不能用SSH地址
+  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  These will help people to find your library, and whilst it
+  #  can feel like a chore to fill in it's definitely to your advantage. The
+  #  summary should be tweet-length, and the description more in depth.
+  #
+
+  s.name         = "TYPopBaseView"
+  s.version      = "4.1.0"
+  s.summary      = "A complete functions TYPopBaseView."
+
+  # This description is used to generate tags and improve search results.
+  #   * Think: What does it do? Why did you write it? What is the focus?
+  #   * Try to keep it short, snappy and to the point.
+  #   * Write the description between the DESC delimiters below.
+  #   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.description  = <<-DESC
+
+A complete functions TYPopBaseView. It can pop all the view.
+
+                   DESC
+
+  s.homepage     = "https://github.com/1070824493"
+
+
+  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  Licensing your code is important. See http://choosealicense.com for more info.
+  #  CocoaPods will detect a license file if there is a named LICENSE*
+  #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
+  #
+
+  s.license      = { :type => "MIT", :file => "LICENSE" }
+  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+
+
+  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  Specify the authors of the library, with email addresses. Email addresses
+  #  of the authors are extracted from the SCM log. E.g. $ git log. CocoaPods also
+  #  accepts just a name if you'd rather not provide an email address.
+  #
+  #  Specify a social_media_url where others can refer to, for example a twitter
+  #  profile URL.
+  #
+
+  s.author             = "唐义"
+
+  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  If this Pod runs only on iOS or OS X, then specify the platform and
+  #  the deployment target. You can optionally include the target after the platform.
+  #
+
+  # s.platform     = :ios
+  s.platform     = :ios, "9.0"
+
+  #  When using multiple platforms
+  # s.ios.deployment_target = "5.0"
+  # s.osx.deployment_target = "10.7"
+  # s.watchos.deployment_target = "2.0"
+  # s.tvos.deployment_target = "9.0"
+
+
+  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  Specify the location from where the source should be retrieved.
+  #  Supports git, hg, bzr, svn and HTTP.
+  #
+
+  s.source       = { :git => "https://github.com/1070824493/TYPopBaseView.git", :tag => "#{s.version}" }
+
+
+  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  CocoaPods is smart about how it includes source code. For source files
+  #  giving a folder will include any swift, h, m, mm, c & cpp files.
+  #  For header files it will include any header in the folder.
+  #  Not including the public_header_files will make all headers public.
+  #
+
   s.source_files  = "Sources/**/*.{swift}"
-  s.requires_arc = true
+  # s.resource  = "Sources/**/*.xcassets", "Sources/en.lproj", "Sources/zh-Hans.lproj"
+  # s.source_files  = "ImagePicker/**/*.swift", "ImagePicker/**/*.xib"
+  # s.resource = "ImagePicker/**/*.png"
 
-  s.platform     = :ios, "8.0" #平台及支持的最低版本
-  # s.frameworks = "UIKit", "Foundation" #支持的框架
-  # s.dependency = "AFNetworking" # 依赖库
-  
-  # User
-  s.author             = { "ty-home" => "tangyi.get@gmail.com" }# 作者信息
-  s.social_media_url   = "http://tangyi.ml" # 个人主页
+
+  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  Link your library with frameworks, or libraries. Libraries do not include
+  #  the lib prefix of their name.
+  #
+
+  # s.framework  = "SomeFramework"
+  # s.frameworks = "SomeFramework", "AnotherFramework"
+
+  # s.library   = "iconv"
+  # s.libraries = "iconv", "xml2"
+
+
+  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  #
+  #  If your library depends on compiler flags you can set them in the xcconfig hash
+  #  where they will only apply to your library. If you depend on other Podspecs
+  #  you can include multiple dependencies to ensure it works.
+
+  # s.requires_arc = true
+
+  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+  # s.dependency "SnapKit", '3.2.0'
 
 end

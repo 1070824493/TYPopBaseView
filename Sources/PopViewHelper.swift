@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol PopViewHelperDelegate: NSObjectProtocol {
+@objc public protocol PopViewHelperDelegate: NSObjectProtocol {
     
     @objc optional func popViewHelper(_ popViewHelper: PopViewHelper, willShowPoppingView targetView: UIView)
     @objc optional func popViewHelper(_ popViewHelper: PopViewHelper, willHidePoppingView targetView: UIView)
@@ -21,7 +21,7 @@ import UIKit
 }
 
 //弹出方向
-enum ViewPopDirection{
+public enum ViewPopDirection{
     case none
     case above
     case below
@@ -33,12 +33,12 @@ enum ViewPopDirection{
 }
 
 //动画表现
-enum AnimationStyle{
+public enum AnimationStyle{
     case normal
     case spring
 }
 
-enum MaskStatus {
+public enum MaskStatus {
     case hidden //不存在
     case transparent //不可见可点击
     case transparentAndDisable //不可见不可点击
@@ -53,7 +53,7 @@ enum AnimationTarget {
     case hide // 最终要隐藏
 }
 
-class PopViewHelper: NSObject {
+open class PopViewHelper: NSObject {
     
     private(set) var isAnimating = false //是否正在动画中
     private(set) var animationTarget: AnimationTarget = .unset
@@ -66,24 +66,24 @@ class PopViewHelper: NSObject {
     private var targetViewShadowOpacity: Float = 0
     private var delayHideTime: TimeInterval?
     
-    weak var delegate: PopViewHelperDelegate?
     
+    public weak var delegate: PopViewHelperDelegate?
     //可定制参数
-    weak var targetView: UIView!
-    var strongTargetView: UIView!
-    var superView: UIView
-    var viewPopDirection: ViewPopDirection
-    var showAnimateDuration: TimeInterval = 0.25 //动画持续时间
-    var hideAnimateDuration: TimeInterval = 0.25 //动画持续时间
-    var alpha:[CGFloat] = [1,1,1]
-    var beginOrigin: CGPoint = CGPoint.zero //开始位置
-    var showOrigin: CGPoint = CGPoint.zero //弹出后位置
-    var endOrigin: CGPoint = CGPoint.zero //收回
-    var maskStatus: MaskStatus //是否显示遮罩
-    var maskAlpha: CGFloat = 0.3
-    var canForceHide = true
-    var priority: Int?
-    var isLockTargetView = false {
+    public weak var targetView: UIView!
+    public var strongTargetView: UIView!
+    public var superView: UIView
+    public var viewPopDirection: ViewPopDirection
+    public var showAnimateDuration: TimeInterval = 0.25 //动画持续时间
+    public var hideAnimateDuration: TimeInterval = 0.25 //动画持续时间
+    public var alpha:[CGFloat] = [1,1,1]
+    public var beginOrigin: CGPoint = CGPoint.zero //开始位置
+    public var showOrigin: CGPoint = CGPoint.zero //弹出后位置
+    public var endOrigin: CGPoint = CGPoint.zero //收回
+    public var maskStatus: MaskStatus //是否显示遮罩
+    public var maskAlpha: CGFloat = 0.3
+    public var canForceHide = true
+    public var priority: Int?
+    public var isLockTargetView = false {
         didSet{
             if isLockTargetView {
                 strongTargetView = targetView
@@ -93,14 +93,14 @@ class PopViewHelper: NSObject {
         }
     }
     
-    var isAnimatedForShadow = false { //是否存在阴影
+    public var isAnimatedForShadow = false { //是否存在阴影
         didSet{
             targetViewShadowOpacity = targetView.layer.shadowOpacity
             targetView.layer.shadowOpacity = 0
         }
     }
     
-    var adjustWithKeyboard = false {
+    public var adjustWithKeyboard = false { //是否调整键盘
         didSet{
             if adjustWithKeyboard {
                 keyBoardController = KeyBoardController(delegate: self)
@@ -109,7 +109,7 @@ class PopViewHelper: NSObject {
         }
     }
     
-    var animationStyle: AnimationStyle = .normal{
+    public var animationStyle: AnimationStyle = .normal{
         didSet{
             switch self.animationStyle {
             case .normal:
@@ -125,6 +125,7 @@ class PopViewHelper: NSObject {
             }
         }
     }
+    
     
     init(superView: UIView? = nil, targetView : UIView, viewPopDirection: ViewPopDirection = .none, maskStatus : MaskStatus = .normal){
         self.targetView = targetView

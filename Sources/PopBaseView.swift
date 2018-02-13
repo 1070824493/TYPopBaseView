@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PopBaseView: UIView {
+open class PopBaseView: UIView {
     
-    fileprivate(set) var popViewHelper: PopViewHelper!
+    public var popViewHelper: PopViewHelper!
     
     init(size: CGSize? = nil, viewPopDirection: ViewPopDirection, maskStatus: MaskStatus) {
         super.init(frame: CGRect.zero)
@@ -18,11 +18,11 @@ class PopBaseView: UIView {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    func initPopViewHelper(with size: CGSize? = nil, withViewPopDirection viewPopDirection: ViewPopDirection, maskStatus: MaskStatus) {
+    open func initPopViewHelper(with size: CGSize? = nil, withViewPopDirection viewPopDirection: ViewPopDirection, maskStatus: MaskStatus) {
         
         frame = CGRect(origin: CGPoint.zero, size: size ?? CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         
@@ -30,11 +30,11 @@ class PopBaseView: UIView {
         
     }
     
-    func show() {
+    open func show() {
         popViewHelper.showPoppingView()
     }
     
-    @objc func hide() {
+    @objc open func hide() {
         popViewHelper.hidePoppingView()
     }
     
@@ -52,8 +52,8 @@ class PopBaseView: UIView {
     }
 }
 
-protocol NibLoadable: class {
-    static var nib: UINib { get }
+public protocol NibLoadable: class {
+    
 }
 
 extension NibLoadable {
@@ -63,21 +63,21 @@ extension NibLoadable {
 }
 
 extension NibLoadable where Self: UIView {
-    static func loadFromNib() -> Self {
+    public static func loadFromNib() -> Self {
         return nib.instantiate(withOwner: nil, options: nil).first as! Self
     }
     
-    static func loadFromNib(with OwnerOrNil: Any?) -> Self {
+    public static func loadFromNib(with OwnerOrNil: Any?) -> Self {
         return nib.instantiate(withOwner: OwnerOrNil, options: nil).first as! Self
     }
 }
 
 extension NibLoadable where Self: UIViewController {
-    var nib: UINib {
+    public var nib: UINib {
         return UINib(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
-    func loadFromNib() {
+    public func loadFromNib() {
         nib.instantiate(withOwner: self, options: nil)
     }
 }

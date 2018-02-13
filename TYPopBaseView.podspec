@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TYPopBaseView"
-  s.version      = "4.1.0"
+  s.version      = "4.1.1"
   s.summary      = "A complete functions TYPopBaseView."
 
   # This description is used to generate tags and improve search results.
